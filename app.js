@@ -1,5 +1,3 @@
-console.log('Starting app.js');
-
 const fs = require('fs');
 const _ = require('lodash');
 const yargs = require('yargs');
@@ -19,7 +17,9 @@ switch (command) {
     else console.log('Title already taken');
     break;
   case 'list':
-    notes.getAll();
+    const allNotes = notes.getAll();
+    console.log(`Printing ${allNotes.length} notes.`);
+    allNotes.forEach(note => notes.logNote(note));
     break;
   case 'read':
     const noteRead = notes.getNote(argv.title);

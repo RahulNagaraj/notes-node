@@ -11,19 +11,22 @@ const command = argv._[0];
 
 switch (command) {
   case 'add':
-    console.log('Add a new note');
-    notes.addNote(argv.title, argv.body);
+    const note = notes.addNote(argv.title, argv.body);
+    if (note) {
+      console.log('Note created');
+      console.log('-----');
+      console.log(`Title: ${note.title}`);
+      console.log(`Body: ${note.body}`);
+    }
+    else console.log('Title already taken');
     break;
   case 'list':
-    console.log('Listing all notes');
     notes.getAll();
     break;
   case 'read':
-    console.log('Reading a note');
     notes.getNote(argv.title);
     break;
   case 'remove':
-    console.log('Remove a note');
     notes.removeNote(argv.title);
     break;
   default:
